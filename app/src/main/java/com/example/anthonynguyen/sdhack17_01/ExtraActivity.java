@@ -12,7 +12,6 @@ public class ExtraActivity extends AppCompatActivity {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_extra);
 
-
     }
 
 
