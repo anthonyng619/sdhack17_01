@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 public class ExtraActivity extends AppCompatActivity {
 
+    @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_extra);
