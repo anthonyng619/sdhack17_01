@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 
-
-public class ButtonActivity2 extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
-        setContentView(R.layout.activity_button_activity_2);
-
+        setContentView(R.layout.activity_search);
 
     }
 
 
 
-}
+    }

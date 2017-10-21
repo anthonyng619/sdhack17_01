@@ -12,13 +12,13 @@ import com.google.firebase.database.FirebaseDatabase;
 
 
 public class HomeActivity extends Activity {
-    private Button btn_activity_1, btn_activity_2, btn_send, btn_signout;
+    private Button btn_Extra, btn_Search, btn_send, btn_signout;
 
     private DatabaseReference mDatabase, root;
     private FirebaseAuth auth;
 
 
-    EditText phone_number;
+    EditText phone_number, address;
 
     String token = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -34,36 +34,41 @@ public class HomeActivity extends Activity {
 
 
         phone_number = (EditText) findViewById(R.id.phone_number);
+        address = (EditText) findViewById(R.id.address);
         //ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.Sports, android.R.layout.simple_spinner_item); Don't need that!
         //spinner_sports.setAdapter(adapter);
         //spinner_sports.setOnItemSelectedListener(this);
 
 
-        btn_activity_1 = (Button) findViewById(R.id.btn_start_google_map);
-        btn_activity_2 = (Button) findViewById(R.id.btn_start_main);
+        btn_Search = (Button) findViewById(R.id.btn_Search);
+        btn_Extra = (Button) findViewById(R.id.btn_Extra);
         btn_send = (Button) findViewById(R.id.btn_send);
         btn_signout = (Button) findViewById(R.id.btn_signout);
 
-        btn_activity_1.setOnClickListener(new View.OnClickListener() {
+
+        btn_Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ButtonActivity1.class));
+                startActivity(new Intent(HomeActivity.this, SearchActivity.class));
             }
         });
 
-        btn_activity_2.setOnClickListener(new View.OnClickListener() {
+        btn_Extra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomeActivity.this, ButtonActivity2.class));
+                startActivity(new Intent(HomeActivity.this, ExtraActivity.class));
             }
         });
 
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String myPhone;
+                String myPhone, myAddress;
                 myPhone = phone_number.getText().toString();
+                myAddress = address.getText().toString();
                 mDatabase.child("users").child(token).child("Phone number").setValue(myPhone);
+                mDatabase.child("users").child(token).child("Address").setValue(myAddress);
+
             }
         });
 
