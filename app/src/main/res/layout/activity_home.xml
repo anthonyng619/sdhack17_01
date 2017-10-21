@@ -1,11 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:weightSum="1">
 
-    <TextView
+    <Button
+        android:id="@+id/btn_start_google_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOME"/>
+        android:text="Button Activity 1"
+        android:layout_marginLeft="45dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="94dp"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btn_start_main"
+        android:layout_toEndOf="@+id/btn_start_main" />
+
+    <Button
+        android:id="@+id/btn_start_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button Activity 2"
+        android:layout_marginLeft="41dp"
+        android:layout_marginStart="41dp"
+        android:layout_alignBaseline="@+id/btn_start_google_map"
+        android:layout_alignBottom="@+id/btn_start_google_map"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="225dp"
+        android:layout_height="40dp"
+        android:background="#90CAF9"
+        android:id="@+id/phone_number"
+        android:layout_marginTop="134dp"
+        android:hint="Phone Number"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/btn_start_main"
+        android:layout_alignStart="@+id/btn_start_main"
+        android:layout_toLeftOf="@+id/btn_send"
+        android:layout_toStartOf="@+id/btn_send"
+        android:layout_weight="0.06" />
+
+
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send"
+        android:layout_alignTop="@+id/phone_number"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+    <Button
+        android:id="@+id/btn_signout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Signout"
+        />
+
 
 </LinearLayout>
