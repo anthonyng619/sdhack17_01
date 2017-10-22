@@ -93,7 +93,7 @@
         android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send"
+        android:text="Update Info"
         tools:layout_constraintRight_creator="1"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBaseline_toBaselineOf="parent"
