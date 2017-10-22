@@ -16,6 +16,7 @@ public class ExtraActivity extends AppCompatActivity {
 
         btn_camera = (Button) findViewById(R.id.btn_camera);
 
+
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
