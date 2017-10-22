@@ -6,7 +6,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/seabg"
         android:gravity="center"
         android:orientation="vertical"
       >
@@ -49,12 +49,10 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@color/colorAccent"
-            android:text="btn_login"
-            android:textColor="@android:color/black" />
+            android:background="@drawable/loginbtn" />
 
         <Button
             android:id="@+id/btn_reset_password"
@@ -62,22 +60,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
-            android:text="btn_forgot_password"
+            android:text="Forgot Password?"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent" />
-
+            android:textColor="@android:color/white"/>
         <!-- Link to Login Screen -->
 
         <Button
             android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="btn_link_to_register"
-            android:textAllCaps="false"
+            android:background="@drawable/signupbtn" />
 
-            android:textSize="15dp" />
     </LinearLayout>
 
 
