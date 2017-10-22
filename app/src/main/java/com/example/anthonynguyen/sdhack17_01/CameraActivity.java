@@ -57,11 +57,13 @@ public class CameraActivity extends AppCompatActivity {
     private Uri imgUri;
     private String imgName;
     private TextView expDate;
+    private EditText quantity;
 
     //Calendar
     private int year;
     private int month;
     private int day;
+    private boolean dateCheck = false;
 
     public static final String FB_STORAGE_PATH = "image/";
     public static final String FB_DATABASE_PATH = "image";
@@ -85,6 +87,7 @@ public class CameraActivity extends AppCompatActivity {
                 setDate();
             }
         });
+        quantity = (EditText) findViewById(R.id.txt_quantity);
         Button sendPictureBtn = (Button) findViewById(R.id.sendImg);
         sendPictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -238,7 +241,8 @@ public class CameraActivity extends AppCompatActivity {
         System.out.println(imgUri.toString());
         System.out.println(imgUri.toString());
         System.out.println(imgUri.toString());
-
+        // Check for any breaking in item information
+        if(!databaseItemCheck()) return;
 
         System.out.println(imgUri.toString());
         // Refernce to storage
@@ -270,8 +274,16 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void setUpDatabaseItem() {
-        Item item = new Item(txtImgName.getText().toString(), imgName, 0, 5555555, "1234 Gay Ave");
+        Item item = new Item(txtImgName.getText().toString(), imgName, expDate.getText().toString(), 5555555, "1234 Gay Ave", Integer.parseInt(quantity.getText().toString()));
         mDatabaseRef.child("items").child(txtImgName.getText().toString()).setValue(item);
+    }
+
+    private boolean databaseItemCheck() {
+        if(txtImgName.getText().toString().isEmpty()) return false;
+        if(imgName == null) return false;
+        if(!dateCheck) return false;
+        int quant = Integer.parseInt(quantity.getText().toString());
+        if(quant > 0) return true; else return false;
     }
 
     private void setDate() {
@@ -282,9 +294,11 @@ public class CameraActivity extends AppCompatActivity {
         DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthofyear, int dayofmonth) {
-                expDate.setText(dayofmonth + "-" + monthofyear + "-" + year);
+                expDate.setText("Set to expire: " + dayofmonth + "-" + monthofyear + "-" + year);
+                dateCheck = true;
             }
         }, year, month, day);
         dpd.show();
     }
+
 }

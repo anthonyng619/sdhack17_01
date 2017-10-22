@@ -7,23 +7,27 @@ package com.example.anthonynguyen.sdhack17_01.models;
 public class Item {
     public String imgTitle;
     public String imgUrl;
-    public int expirationDate;
+    public String expirationDate;
     public int phone;
     public String address;
+    public int quantity;
 
-    public Item(String imgTitle, String imgUrl, int expirationDate, int phone, String address) {
+    public Item(String imgTitle, String imgUrl, String expirationDate, int phone, String address, int quantity) {
         this.imgTitle = imgTitle;
         this.imgUrl = imgUrl;
         this.expirationDate = expirationDate;
         this.phone = phone;
         this.address = address;
+        this.quantity = quantity;
     }
 
     public String getImgUrl() {return imgUrl;}
 
-    public int getExpirationDate() {return expirationDate;}
+    public String getExpirationDate() {return expirationDate;}
 
     public int getPhone() {return phone;}
 
     public String getAddress() {return address;}
+
+    public int getQuantity() {return quantity;}
 }
