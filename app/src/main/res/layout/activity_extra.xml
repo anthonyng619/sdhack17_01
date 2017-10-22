@@ -12,6 +12,7 @@
 
 
     <TextView
+        android:id="@+id/textview_describtion"
         android:layout_below="@id/extra_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,6 +22,14 @@
         3, Set the date before going to third party (using Calendar?)
         4, Upload the item online so other can see"/>
 
+
+    <Button
+        android:id="@+id/btn_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textview_describtion"
+        android:layout_centerHorizontal="true"
+        android:text="Camera"/>
 
 
 </RelativeLayout>
