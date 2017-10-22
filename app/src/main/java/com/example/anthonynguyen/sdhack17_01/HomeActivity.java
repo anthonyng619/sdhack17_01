@@ -3,6 +3,7 @@ package com.example.anthonynguyen.sdhack17_01;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +12,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends AppCompatActivity {
     private Button btn_Extra, btn_Search, btn_send, btn_signout;
 
     private DatabaseReference mDatabase, root;
@@ -22,7 +23,7 @@ public class HomeActivity extends Activity {
 
     String token = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
+    @Override
     protected void onCreate(Bundle saveInstanceState) {
         super.onCreate(saveInstanceState);
         setContentView(R.layout.activity_home);
