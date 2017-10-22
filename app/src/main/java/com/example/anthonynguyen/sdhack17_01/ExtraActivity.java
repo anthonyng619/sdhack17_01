@@ -23,8 +23,6 @@ public class ExtraActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
 
