@@ -5,19 +5,21 @@ package com.example.anthonynguyen.sdhack17_01.models;
  */
 
 public class Item {
-    public String picturePath;
+    public String imgTitle;
+    public String imgUrl;
     public int expirationDate;
     public int phone;
     public String address;
 
-    public Item(String picturePath, int expirationDate, int phone, String address) {
-        this.picturePath = picturePath;
+    public Item(String imgTitle, String imgUrl, int expirationDate, int phone, String address) {
+        this.imgTitle = imgTitle;
+        this.imgUrl = imgUrl;
         this.expirationDate = expirationDate;
         this.phone = phone;
         this.address = address;
     }
 
-    public String getPicture() {return picturePath;}
+    public String getImgUrl() {return imgUrl;}
 
     public int getExpirationDate() {return expirationDate;}
 

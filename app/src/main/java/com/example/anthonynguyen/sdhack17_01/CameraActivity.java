@@ -1,10 +1,12 @@
 package com.example.anthonynguyen.sdhack17_01;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
@@ -12,16 +14,32 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.anthonynguyen.sdhack17_01.models.Item;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -33,6 +51,20 @@ public class CameraActivity extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 123;
     ImageView img;
     String mCurrentPhotoPath;
+    private DatabaseReference mDatabaseRef;
+    private StorageReference mStorageRef;
+    private EditText txtImgName;
+    private Uri imgUri;
+    private String imgName;
+    private TextView expDate;
+
+    //Calendar
+    private int year;
+    private int month;
+    private int day;
+
+    public static final String FB_STORAGE_PATH = "image/";
+    public static final String FB_DATABASE_PATH = "image";
 
     @Override
     protected void onCreate(Bundle saveInstancedState) {
@@ -45,6 +77,27 @@ public class CameraActivity extends AppCompatActivity {
                 dispatchTakePictureIntent();
             }
         });
+        expDate = (TextView) findViewById(R.id.expirationdate);
+        Button setDate = (Button) findViewById(R.id.btn_setDate);
+        setDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setDate();
+            }
+        });
+        Button sendPictureBtn = (Button) findViewById(R.id.sendImg);
+        sendPictureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendButton();
+            }
+        });
+
+        //Storage
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
+
+        txtImgName = (EditText) findViewById(R.id.imgName);
     }
 
     private void dispatchTakePictureIntent() {
@@ -80,6 +133,7 @@ public class CameraActivity extends AppCompatActivity {
             saveImage(fullres);
             updateImageView(fullres);
         }
+
     }
 
     private File createImageFile() throws IOException {
@@ -149,7 +203,9 @@ public class CameraActivity extends AppCompatActivity {
         File myDir = new File(root);
         myDir.mkdirs();
         String fname = "Image-" + getTime() + ".png";
+        imgName = fname;
         File file = new File(myDir, fname);
+        setUri(); // Setting uri for future send
         if(file.exists()) file.delete();
         try {
             FileOutputStream out = new FileOutputStream(file);
@@ -172,6 +228,63 @@ public class CameraActivity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.imgView);
         img.setImageBitmap(bmap);
     }
+
+    public void setUri() {
+        imgUri = Uri.fromFile(new File(mCurrentPhotoPath));
+    }
+
+    public void sendButton() {
+        System.out.println(imgUri.toString());System.out.println(imgUri.toString());
+        System.out.println(imgUri.toString());
+        System.out.println(imgUri.toString());
+        System.out.println(imgUri.toString());
+
+
+        System.out.println(imgUri.toString());
+        // Refernce to storage
+        StorageReference ref = mStorageRef.child(FB_STORAGE_PATH + imgName);
+
+        // Adding file to ref
+        ref.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                Toast.makeText(CameraActivity.this, "Upload successful", Toast.LENGTH_SHORT).show();
+                setUpDatabaseItem();
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                        Toast.makeText(CameraActivity.this, "Upload unsuccessful. Please try again.", Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            }
+                        });
+    }
+
+    private void setUpDatabaseItem() {
+        Item item = new Item(txtImgName.getText().toString(), imgName, 0, 5555555, "1234 Gay Ave");
+        mDatabaseRef.child("items").child(txtImgName.getText().toString()).setValue(item);
+    }
+
+    private void setDate() {
+        final Calendar c = Calendar.getInstance();
+        year = c.get(Calendar.YEAR);
+        month = c.get(Calendar.MONTH);
+        day = c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthofyear, int dayofmonth) {
+                expDate.setText(dayofmonth + "-" + monthofyear + "-" + year);
+            }
+        }, year, month, day);
+        dpd.show();
+    }
 }
-
-
