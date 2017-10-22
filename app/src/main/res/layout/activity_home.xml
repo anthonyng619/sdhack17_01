@@ -2,7 +2,23 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="@drawable/profile">
+
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:src="@drawable/phone"
+        android:id="@+id/imageView4"
+        android:layout_toStartOf="@+id/phone_number"
+        android:layout_alignTop="@+id/phone_number" />
+
+    <ImageView
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:src="@drawable/home"
+        android:layout_alignTop="@+id/address"
+        android:layout_alignStart="@+id/imageView4" />
 
     <Button
         android:id="@+id/btn_Search"
@@ -10,11 +26,10 @@
         android:layout_height="wrap_content"
         android:text="Search"
         android:layout_marginLeft="45dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginBottom="94dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginEnd="12dp"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/btn_Extra"
-        android:layout_toEndOf="@+id/btn_Extra" />
+        android:layout_alignEnd="@+id/phone_number" />
 
     <Button
         android:id="@+id/btn_Extra"
@@ -25,7 +40,6 @@
         android:layout_marginStart="41dp"
         android:layout_alignBaseline="@+id/btn_Search"
         android:layout_alignBottom="@+id/btn_Search"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -33,14 +47,13 @@
         android:layout_height="40dp"
         android:background="#90CAF9"
         android:id="@+id/phone_number"
-        android:layout_marginTop="134dp"
+        android:layout_marginTop="141dp"
         android:hint="Phone Number"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/btn_Extra"
+        android:textSize="30dp"
+        android:layout_weight="0.06"
+        android:layout_below="@+id/btn_signout"
         android:layout_alignStart="@+id/btn_Extra"
-        android:layout_toLeftOf="@+id/btn_send"
-        android:layout_toStartOf="@+id/btn_send"
-        android:layout_weight="0.06" />
+        android:layout_marginStart="13dp" />
 
     <EditText
         android:id="@+id/address"
@@ -48,9 +61,10 @@
         android:layout_height="wrap_content"
         android:hint="Address"
         android:textSize="30dp"
+        android:background="#90CA09"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/phone_number"
-        android:layout_alignStart="@+id/phone_number"
-        android:background="#90CA09"/>
+        android:layout_alignStart="@+id/phone_number" />
 
 
     <Button
@@ -58,8 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Send"
-        android:layout_alignTop="@+id/phone_number"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
 
@@ -68,7 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Signout"
-        />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
