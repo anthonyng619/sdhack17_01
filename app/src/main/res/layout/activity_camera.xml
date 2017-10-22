@@ -8,103 +8,113 @@
     android:background="@drawable/itemlisting"
     >
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/takePicture"
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="#FFCC00"
-            android:onClick="process"
-            android:text="Take Picture"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_constraintTop_creator="1" />
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/takePicture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFCC00"
+                android:onClick="process"
+                android:text="Take Picture"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_constraintTop_creator="1" />
+
+            <ImageView
+                android:layout_below="@+id/takePicture"
+                android:id="@+id/imgView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgName"
+                tools:layout_constraintTop_creator="1" />
+
+            <EditText
+                android:layout_below="@id/imgView"
+                android:id="@+id/imgName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
 
-        <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgName"
-            tools:layout_constraintTop_creator="1" />
+                android:hint="Image name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/takePicture"
+                tools:layout_constraintTop_creator="1"
+                app:layout_constraintHorizontal_bias="0.518" />
 
-        <EditText
-            android:id="@+id/imgName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            <TextView
+                android:layout_below="@id/imgName"
+                android:id="@+id/expirationdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a date"
+                app:layout_constraintLeft_toLeftOf="parent"
 
-            android:hint="Image name"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/takePicture"
-            tools:layout_constraintTop_creator="1" />
+                tools:layout_constraintTop_creator="1" />
 
-        <TextView
-            android:id="@+id/expirationdate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Select a date"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imgView"
-            tools:layout_constraintTop_creator="1" />
+            <Button
+                android:layout_below="@id/expirationdate"
+                android:id="@+id/btn_setDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set expiration date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/expirationdate"
+                tools:layout_constraintTop_creator="1" />
 
-        <Button
-            android:id="@+id/btn_setDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Set expiration date"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/expirationdate"
-            tools:layout_constraintTop_creator="1" />
+            <EditText
+                android:layout_below="@id/btn_setDate"
+                android:id="@+id/txt_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                app:layout_constraintLeft_toLeftOf="@+id/btn_setDate"
+                app:layout_constraintRight_toRightOf="@+id/btn_setDate"
+                app:layout_constraintTop_toBottomOf="@+id/btn_setDate"
+                tools:layout_constraintLeft_creator="1"
+                tools:layout_constraintRight_creator="1"
+                tools:layout_constraintTop_creator="1" />
 
-        <EditText
-            android:id="@+id/txt_quantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            app:layout_constraintLeft_toLeftOf="@+id/btn_setDate"
-            app:layout_constraintRight_toRightOf="@+id/btn_setDate"
-            app:layout_constraintTop_toBottomOf="@+id/btn_setDate"
-            tools:layout_constraintLeft_creator="1"
-            tools:layout_constraintRight_creator="1"
-            tools:layout_constraintTop_creator="1" />
+            <EditText
+                android:layout_below="@id/txt_quantity"
+                android:id="@+id/send_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter address..."
+                app:layout_constraintLeft_toLeftOf="@+id/btn_setDate"
+                app:layout_constraintRight_toRightOf="@+id/btn_setDate"
+                app:layout_constraintTop_toBottomOf="@+id/btn_setDate"
 
-        <EditText
-            android:id="@+id/send_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter address..." />
-
-        <EditText
-            android:id="@+id/send_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Phone..." />
+                app:layout_constraintHorizontal_bias="0.0" />
 
 
-        <Button
-            android:id="@+id/sendImg"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="List"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            tools:layout_constraintBottom_creator="1"
-            app:layout_constraintRight_toRightOf="parent" />
+            <EditText
+                android:layout_below="@id/send_address"
+                android:id="@+id/send_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter phone number "/>
 
-    </android.support.constraint.ConstraintLayout>
+
+            <Button
+                android:layout_below="@id/send_phone"
+                android:id="@+id/sendImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="List"
+                />
+
+        </RelativeLayout>
+
 
 </ScrollView>
