@@ -32,6 +32,7 @@
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".ExtraActivity"></activity>
         <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".GridViewActivity"></activity>
 
 
         <provider

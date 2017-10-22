@@ -8,13 +8,13 @@ public class Item {
     public String imgTitle;
     public String imgUrl;
     public String expirationDate;
-    public int phone;
+    public String phone;
     public String address;
-    public int quantity;
+    public String quantity;
 
     public Item() {}
 
-    public Item(String imgTitle, String imgUrl, String expirationDate, int phone, String address, int quantity) {
+    public Item(String imgTitle, String imgUrl, String expirationDate, String phone, String address, String quantity) {
         this.imgTitle = imgTitle;
         this.imgUrl = imgUrl;
         this.expirationDate = expirationDate;
@@ -29,9 +29,9 @@ public class Item {
 
     public String getExpirationDate() {return expirationDate;}
 
-    public int getPhone() {return phone;}
+    public String getPhone() {return phone;}
 
     public String getAddress() {return address;}
 
-    public int getQuantity() {return quantity;}
+    public String getQuantity() {return quantity;}
 }

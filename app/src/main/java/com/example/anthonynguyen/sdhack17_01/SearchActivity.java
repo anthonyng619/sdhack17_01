@@ -1,5 +1,6 @@
 package com.example.anthonynguyen.sdhack17_01;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.annotation.IntegerRes;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -26,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -86,6 +89,15 @@ public class SearchActivity extends AppCompatActivity {
         gridView = (GridView) findViewById(R.id.gridview);
         gridView.setAdapter(new ImageAdapter(this));
 
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(SearchActivity.this, GridViewActivity.class);
+                intent.putExtra("int", position);
+                startActivity(intent);
+                System.out.println("I'm clicking!");
+            }
+        });
 
     }
 
@@ -108,6 +120,8 @@ public class SearchActivity extends AppCompatActivity {
         if(!itemList.isEmpty()) {
             itemList.clear();
         }
+
+
         ref.child("items").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -115,6 +129,17 @@ public class SearchActivity extends AppCompatActivity {
                     Item item = snapshot.getValue(Item.class);
                     itemList.add(item);
                     System.out.println("Adding " + item.getImgTitle());
+                    System.out.println("Is this working????");
+                    System.out.println("Is this working????");
+                    System.out.println("Is this working????");
+                    System.out.println("Is this working????");
+                    System.out.println("Is this working????");
+                    System.out.println("What is this IM HERE" + item.getImgUrl());
+
+                    //downloadToMemory1(item.getImgUrl());
+
+
+
                 }
             }
 
@@ -195,26 +220,32 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    /*private void downloadToMemory() {
-        index = 0;
-        for(Item item : searchList) {
-            final String imgFilename = item.getImgUrl();
-            pathRef.child(imgFilename).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+
+
+
+    public void downloadToMemory1(String s) {
+
+            pathRef.child(s).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                 @Override
                 public void onSuccess(byte[] bytes) {
-                    //Data for image
-                    Bitmap bmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                    bmap_lol = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 
-                    searchList_Bitmap_Int.put(index, HashMap.Entry<imgFilename, bmap>);
+                    searchList_Bitmap.add(bmap_lol);
+                    Toast.makeText(SearchActivity.this, "Success download", Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-
+                    Toast.makeText(SearchActivity.this, "Failed download", Toast.LENGTH_SHORT).show();
                 }
             });
-            index++;
-        }
-    }*/
+    }
+
+    public byte[] bitmapToByte(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
+    }
 
     }

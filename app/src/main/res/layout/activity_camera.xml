@@ -82,6 +82,19 @@
             tools:layout_constraintRight_creator="1"
             tools:layout_constraintTop_creator="1" />
 
+        <EditText
+            android:id="@+id/send_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter address..." />
+
+        <EditText
+            android:id="@+id/send_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Phone..." />
+
+
         <Button
             android:id="@+id/sendImg"
             android:layout_width="wrap_content"

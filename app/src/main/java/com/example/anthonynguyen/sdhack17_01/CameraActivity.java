@@ -58,6 +58,8 @@ public class CameraActivity extends AppCompatActivity {
     private String imgName;
     private TextView expDate;
     private EditText quantity;
+    private EditText address;
+    private EditText phone;
 
     //Calendar
     private int year;
@@ -88,6 +90,8 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
         quantity = (EditText) findViewById(R.id.txt_quantity);
+        address = (EditText) findViewById(R.id.send_address);
+        phone = (EditText)  findViewById(R.id.send_phone);
         Button sendPictureBtn = (Button) findViewById(R.id.sendImg);
         sendPictureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +99,7 @@ public class CameraActivity extends AppCompatActivity {
                 sendButton();
             }
         });
+
 
         //Storage
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -274,7 +279,8 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void setUpDatabaseItem() {
-        Item item = new Item(txtImgName.getText().toString(), imgName, expDate.getText().toString(), 5555555, "1234 Gay Ave", Integer.parseInt(quantity.getText().toString()));
+        Item item = new Item(txtImgName.getText().toString(), imgName, expDate.getText().toString(), phone.getText().toString(),
+                address.getText().toString(), quantity.getText().toString());
         mDatabaseRef.child("items").child(txtImgName.getText().toString()).setValue(item);
     }
 
@@ -282,8 +288,9 @@ public class CameraActivity extends AppCompatActivity {
         if(txtImgName.getText().toString().isEmpty()) return false;
         if(imgName == null) return false;
         if(!dateCheck) return false;
-        int quant = Integer.parseInt(quantity.getText().toString());
-        if(quant > 0) return true; else return false;
+        if(address == null) return false;
+        if(quantity == null) return false;
+        return true;
     }
 
     private void setDate() {

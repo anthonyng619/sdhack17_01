@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/info_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="title"
+        android:gravity="center"/>
+    <TextView
+        android:layout_below="@id/info_title"
+        android:id="@+id/info_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="address"
+        android:gravity="center"/>
+    <TextView
+        android:layout_below="@id/info_address"
+        android:id="@+id/info_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="phone"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/info_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="quantity"
+        android:gravity="center"
+        android:layout_below="@+id/info_phone"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_below="@id/info_quantity"
+        android:id="@+id/info_expire"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="expire"
+        android:gravity="center"/>
+</RelativeLayout>
