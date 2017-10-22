@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -108,7 +110,38 @@ public class CameraActivity extends AppCompatActivity {
 
     private Bitmap fileToBitmap() {
         Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath);
-        return bitmap;
+        Bitmap rotatedBitmap = null;
+        try {
+            ExifInterface ei = new ExifInterface(mCurrentPhotoPath);
+            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotatedBitmap = rotateImage(bitmap, 90);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotatedBitmap = rotateImage(bitmap, 180);
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotatedBitmap = rotateImage(bitmap, 270);
+                    break;
+                case ExifInterface.ORIENTATION_NORMAL:
+                default:
+                    rotatedBitmap = bitmap;
+
+            }
+        } catch (Exception e) {
+        }
+        if(rotatedBitmap == null) {
+            rotatedBitmap = bitmap;
+        }
+        return rotatedBitmap;
+    }
+
+    public static Bitmap rotateImage(Bitmap bmap, float angle) {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(bmap, 0, 0, bmap.getWidth(), bmap.getHeight(),
+                matrix, true);
     }
 
     private void saveImage(Bitmap bmap) {
