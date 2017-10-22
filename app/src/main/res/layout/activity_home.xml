@@ -41,10 +41,12 @@
         android:id="@+id/btn_Search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
         android:text="Item Search"
-        app:layout_constraintLeft_toRightOf="@+id/btn_Extra"
-        tools:layout_editor_absoluteY="493dp" />
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/btn_Extra"
@@ -52,12 +54,10 @@
         android:layout_height="wrap_content"
         android:text="Extra Listing"
         tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="41dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="66dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="41dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <EditText
         android:layout_width="225dp"
