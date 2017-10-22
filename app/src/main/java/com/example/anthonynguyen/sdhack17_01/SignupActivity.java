@@ -145,6 +145,7 @@ public class SignupActivity extends AppCompatActivity{
         String usernameId = name.toUpperCase();
         User user = new User(name, usernameId, email);
         mDatabase.child("users").child(userId).setValue(user);
+
     }
 
 

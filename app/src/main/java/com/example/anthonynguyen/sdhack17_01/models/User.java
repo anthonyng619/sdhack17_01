@@ -1,8 +1,6 @@
 package com.example.anthonynguyen.sdhack17_01.models;
 
-/**
- * Created by Keng on 10/21/2017.
- */
+
 
 public class User {
     public String username;
