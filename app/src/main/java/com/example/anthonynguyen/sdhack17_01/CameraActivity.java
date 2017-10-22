@@ -48,7 +48,7 @@ import java.util.Date;
  */
 
 public class CameraActivity extends AppCompatActivity {
-    static final int REQUEST_TAKE_PHOTO = 123;
+    static final int REQUEST_TAKE_PHOTO = 1;
     ImageView img;
     String mCurrentPhotoPath;
     private DatabaseReference mDatabaseRef;

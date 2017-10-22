@@ -12,6 +12,8 @@ public class Item {
     public String address;
     public int quantity;
 
+    public Item() {}
+
     public Item(String imgTitle, String imgUrl, String expirationDate, int phone, String address, int quantity) {
         this.imgTitle = imgTitle;
         this.imgUrl = imgUrl;
@@ -20,6 +22,8 @@ public class Item {
         this.address = address;
         this.quantity = quantity;
     }
+
+    public String getImgTitle() {return imgTitle;}
 
     public String getImgUrl() {return imgUrl;}
 

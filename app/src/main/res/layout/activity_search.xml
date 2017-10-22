@@ -31,14 +31,13 @@
         android:background="#90CAF9"
         />
 
-
-
-
-
-
-
-
-
+    <Button
+        android:id="@+id/btn_browseall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search_item_name"
+        android:layout_toEndOf="@+id/search_textView"
+        android:text="Browse all" />
 
 
 </RelativeLayout>
